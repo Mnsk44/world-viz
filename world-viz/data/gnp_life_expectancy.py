@@ -1,5 +1,5 @@
 """
-Interface for fetching fastest relative growth of population
+Interface for fetching GNP and life expectancy relations
 """
 import pandas as pd
 import plotly.express as px
