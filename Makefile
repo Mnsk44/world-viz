@@ -16,6 +16,19 @@ unit-test: build-test
 	docker run --rm world-viz_test \
 		pytest test
 
+.PHONY: lint
+lint: build-test
+	docker run --rm world-viz_test \
+		pylint world-viz test
+
+.PHONY: type-check
+type-check: build-test
+	docker run --rm world-viz_test \
+		mypy world-viz
+
+.PHONY: sanity-check
+sanity-check: unit-test lint type-check
+
 #--- Running the program ---#
 .PHONY: run
 run:
