@@ -2,3 +2,5 @@ SQLAlchemy
 pandas
 plotly
 dash
+psycopg2
+pycountry
