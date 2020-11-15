@@ -1,3 +1,7 @@
+"""
+Callbacks for dash app
+"""
+
 from dash.dependencies import Input, Output, State
 import dash_core_components as dcc
 from data.relative_growth import fastest_relative_pop_growth

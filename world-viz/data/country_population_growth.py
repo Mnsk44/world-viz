@@ -1,5 +1,5 @@
 """
-Interface for fetching fastest relative growth of population
+Interface for fetching country specific population increase between 2000-2015
 """
 import pandas as pd
 import plotly.express as px
