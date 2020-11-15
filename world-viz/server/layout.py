@@ -6,7 +6,8 @@ layout = html.Div([
     html.Div([
         dcc.Tabs(id="tabs", value="relative-growth", children=[
             dcc.Tab(label="Relative Population Growth", value="relative-growth"),
-            dcc.Tab(label="GNP and life expectancy", value="gnp")
+            dcc.Tab(label="GNP and life expectancy", value="gnp"),
+            dcc.Tab(label="Largest English Speaking Cities", value="city")
         ]),
         html.Div(id="tabs-content")
 
