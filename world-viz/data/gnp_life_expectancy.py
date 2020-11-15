@@ -3,11 +3,12 @@ Interface for fetching GNP and life expectancy relations
 """
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 from dbconn.connect import DBConnection
 
 DB = DBConnection()
 
-def gnp_and_life_expectancy():
+def gnp_and_life_expectancy() -> go.Figure:
     sql_query = 'SELECT "name", "population", "life_expectancy", "gnp" FROM country;'
     data = DB.query(sql_query)
     data = pd.DataFrame.from_records(data,
@@ -20,7 +21,7 @@ def gnp_and_life_expectancy():
     return _create_visualization(data[["name", "gnp_per_capita", "life_expectancy"]])
 
 
-def _create_visualization(data):
+def _create_visualization(data: pd.DataFrame) -> go.Figure:
     return px.scatter(data,
                   x="life_expectancy",
                   y="gnp_per_capita",

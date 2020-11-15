@@ -3,11 +3,12 @@ Interface for fetching fastest relative growth of population
 """
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 from dbconn.connect import DBConnection
 
 DB = DBConnection()
 
-def english_speaking_city_populations(count=20) -> pd.DataFrame:
+def english_speaking_city_populations(count=20) -> go.Figure:
     sql_query = '''SELECT city.name, city.population, c.name, c.population
                    FROM city
                    INNER JOIN country_language cl
@@ -24,7 +25,7 @@ def english_speaking_city_populations(count=20) -> pd.DataFrame:
                                               "country_population"])
     return _create_visualization(data.nlargest(count, "city_population"))
 
-def _create_visualization(data):
+def _create_visualization(data: pd.DataFrame) -> go.Figure:
     return px.bar(data,
                   x="name",
                   y="city_population",

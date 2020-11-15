@@ -3,11 +3,12 @@ Interface for fetching fastest relative growth of population
 """
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 from dbconn.connect import DBConnection
 
 DB = DBConnection()
 
-def fastest_relative_pop_growth(count: int=10) -> pd.DataFrame:
+def fastest_relative_pop_growth(count: int=10) -> go.Figure:
     sql_query = 'SELECT "Country Name", "2000", "2015" FROM population;'
     data = DB.query(sql_query)
     data = pd.DataFrame.from_records(data,
@@ -16,7 +17,7 @@ def fastest_relative_pop_growth(count: int=10) -> pd.DataFrame:
     data = data.pct_change(axis="columns").nlargest(count, "2015")["2015"]
     return _create_visualization(data.reset_index())
 
-def _create_visualization(data):
+def _create_visualization(data: pd.DataFrame) -> go.Figure:
     return px.bar(data,
                   x="Country Name",
                   y="2015",
