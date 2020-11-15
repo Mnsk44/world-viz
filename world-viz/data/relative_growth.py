@@ -25,4 +25,6 @@ def _create_visualization(data):
                       "2015": "Relative Growth",
                       "Country Name": "Country"
                   }).update_layout(showlegend=False,
-                                  yaxis_tickformat="%")
+                                  yaxis_tickformat="%"
+                    ).update_xaxes(categoryorder="total ascending"
+                    )
