@@ -41,3 +41,9 @@ run-detached:
 .PHONY: shutdown
 shutdown:
 	docker-compose down
+
+#--- Requirement update util ---#
+.PHONY: get-updates-to-requirements
+get-updates-to-requirements:
+	docker build --tag update-req -f $(CURDIR)/util/ReqUpdate.Dockerfile . && \
+	docker run update-req:latest
