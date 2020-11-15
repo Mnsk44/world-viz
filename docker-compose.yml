@@ -24,15 +24,21 @@ services:
     build:
       context: .
       target: production
+    restart: always
     depends_on:
       - db_pop
+    links:
+    - "db:pgsql-server"
 
   db_pop:
     build:
       context: .
       target: db_population
+    restart: on-failure
     depends_on:
       - db
+    links:
+    - "db:pgsql-server"
 
 volumes:
   pgadmin-data:
