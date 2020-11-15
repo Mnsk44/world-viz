@@ -23,8 +23,6 @@ def country_population_growth(country: str=None) -> pd.DataFrame:
                    value_name="population")
     if country:
         return _create_visualization(data[data["Country Name"] == country])
-    else:
-        return _create_visualization(data.groupby("year").sum())
 
 def _create_visualization(data):
     return px.scatter(data,
