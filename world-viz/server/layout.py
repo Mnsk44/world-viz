@@ -1,5 +1,13 @@
-from dash_html_components import Div, H1
+import dash_html_components as html
+import dash_core_components as dcc
 
-layout = Div(
-    H1("Hello World!")
-)
+layout = html.Div([
+    html.H1("Hello World!"),
+    html.Div([
+        dcc.Tabs(id="tabs", value="relative-growth", children=[
+            dcc.Tab(label="Relative Population Growth", value="relative-growth"),
+        ]),
+        html.Div(id="tabs-content")
+
+    ])
+])

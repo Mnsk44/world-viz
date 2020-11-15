@@ -2,8 +2,10 @@
 Database connection utlities
 """
 import logging
+from typing import List
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
+from sqlalchemy.engine.result import RowProxy
 
 class DBConnection():
     """
@@ -30,3 +32,16 @@ class DBConnection():
             Engine: Database engine that can generate connections
         """
         return self._engine
+
+    def query(self, sql_statement: str) -> List[RowProxy]:
+        """
+        Generate a connection object that can execute() sql statements
+        When used in a with-statement,
+        successful operations are committed and error cases are rolled back.
+
+        Returns:
+            Connection: SQLAlchemy Connection object with established Transaction.
+        """
+        with self._engine.begin() as conn:
+            data = conn.execute(sql_statement)
+        return data.fetchall()
